@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProDad - Offline Mode</title>
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --background: #ffffff;
+        --foreground: #111827;
+        --muted: #f3f4f6;
+        --muted-foreground: #6b7280;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #18181b;
+          --foreground: #e4e4e7;
+          --muted: #27272a;
+          --muted-foreground: #a1a1aa;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--background);
+        color: var(--foreground);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .container {
+        max-width: 28rem;
+        text-align: center;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: var(--muted-foreground);
+        margin-bottom: 1.5rem;
+      }
+
+      .card {
+        background-color: var(--muted);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .card-title {
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+      }
+
+      ul {
+        text-align: left;
+        padding-left: 1.5rem;
+        font-size: 0.875rem;
+      }
+
+      li {
+        margin: 0.25rem 0;
+      }
+
+      button {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">ProDad</div>
+
+      <h1>You're offline</h1>
+
+      <p>
+        It looks like you're currently offline. Some features may not be available until you
+        reconnect to the internet.
+      </p>
+
+      <div class="card">
+        <p class="card-title">Don't worry, the ProDad app is designed to work offline. You can:</p>
+        <ul>
+          <li>View your saved reminders</li>
+          <li>Check your calendar events</li>
+          <li>Access previously viewed documents</li>
+        </ul>
+      </div>
+
+      <button onclick="window.location.reload()">Try again</button>
+    </div>
+
+    <script>
+      // Check if we're back online
+      window.addEventListener('online', () => {
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>

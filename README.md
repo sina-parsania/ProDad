@@ -1,36 +1,203 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProDad - Support Through Parenthood
 
-## Getting Started
+ProDad is a Progressive Web App (PWA) designed to help fathers support their partners during pregnancy, childbirth, and early parenthood. This application provides tools for tracking appointments, managing reminders, storing important medical documents, and accessing resources to navigate the journey of fatherhood.
 
-First, run the development server:
+## Features
+
+### Dashboard
+
+- At-a-glance view of upcoming events, active reminders, and recent documents
+- Quick access to all key features
+
+### Calendar
+
+- Schedule and track medical appointments, classes, and key dates
+- Sync with partners to maintain a shared calendar
+- Multiple views (day, week, month, agenda)
+- Event categorization and details
+
+### Reminders
+
+- Set up reminders for medication, appointments, and other important tasks
+- Notification system with browser notifications
+- Priority-based organization
+- Recurring reminder capabilities
+
+### Document Storage
+
+- Store and organize important medical documents, prescriptions, and photos
+- Categorization system for easy retrieval
+- Preview capabilities for multiple file types
+- Secure local storage
+
+### Ask AI
+
+- Get answers to common parenting questions
+
+### Progressive Web App
+
+- Install on your device for offline use
+
+## PWA Features
+
+This application is a Progressive Web App (PWA), which means you can:
+
+- **Install on your device** - Works on Android, iOS\*, and desktop browsers
+- **Use offline** - Core functionality works without an internet connection
+- **Receive notifications** - Get reminded about important events
+- **Automatic updates** - Always have the latest version
+
+\*Note: iOS has limited PWA capabilities compared to Android and desktop.
+
+## Development
+
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm 9.x or higher
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/sina-parsania/ProDad.git
+cd prodad
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Git Hooks with Husky
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+ProDad uses Husky to enforce code quality standards through Git hooks:
 
-## Learn More
+- **Pre-commit Hook**: Automatically lints and formats staged files using ESLint and Prettier
+- **Pre-push Hook**: Runs linting checks before allowing code to be pushed
 
-To learn more about Next.js, take a look at the following resources:
+These hooks help maintain consistent code quality and prevent issues from being committed or pushed to the repository.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### How it works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. When you commit changes, the pre-commit hook will:
+   - Run ESLint on staged .ts, .tsx, .js, and .jsx files
+   - Format files with Prettier
+   - Only process staged files (using lint-staged)
 
-## Deploy on Vercel
+2. When you push changes, the pre-push hook will:
+   - Run linting on the entire codebase
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Manual setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If the hooks aren't working, you can reinstall them with:
+
+```bash
+npm run prepare
+```
+
+### Building for Production
+
+```bash
+npm run build
+npm run start
+```
+
+### Validating PWA Setup
+
+After building the project, you can validate the PWA setup with:
+
+```bash
+npm run pwa:validate
+```
+
+## PWA Testing
+
+1. **Build and run the production version**:
+
+   ```bash
+   npm run build
+   npm run start
+   ```
+
+2. **Audit with Lighthouse**:
+
+   - Open Chrome DevTools
+   - Go to the "Lighthouse" tab
+   - Check "Progressive Web App"
+   - Click "Generate report"
+
+3. **Test offline functionality**:
+
+   - Open Chrome DevTools
+   - Go to the "Network" tab
+   - Check "Offline"
+   - Refresh the page
+
+4. **Install the PWA**:
+   - Look for the install icon in the browser's address bar
+   - Alternatively, on Chrome, go to the three-dot menu > "Install ProDad"
+
+## PWA Configuration
+
+The PWA configuration is managed by next-pwa and can be found in:
+
+- `next.config.js` - Service worker and caching configuration
+- `public/manifest.json` - App manifest with metadata and icons
+- `src/components/pwa/InstallPrompt.tsx` - Custom install prompt
+- `src/components/ServiceWorkerRegistration.tsx` - Service worker registration and updates
+
+### PWA Icons
+
+The ProDad application uses a set of standard PWA icons generated from the main logo. The icons are located in the `/public/icons/` directory and are available in the following sizes:
+
+- 48x48
+- 72x72
+- 96x96
+- 144x144
+- 192x192
+- 512x512
+
+To regenerate the icons (for example, if the logo changes), run:
+
+```bash
+npm run icons:generate
+```
+
+To verify that all the necessary icons exist and are correctly referenced in the manifest.json:
+
+```bash
+npm run icons:test
+```
+
+## Browser Support
+
+ProDad works best in modern browsers that support:
+
+- IndexedDB
+- Service Workers
+- Notifications API
+
+For the full background notification experience, the application should be:
+
+1. Installed as a PWA
+2. Given notification permissions
+3. Used in a browser that supports Background Sync (primarily Chromium-based browsers)
+
+## Privacy
+
+ProDad stores all data locally on your device. No data is sent to external servers, ensuring your medical information remains private and secure.
+
+## License
+
+[MIT](LICENSE)
