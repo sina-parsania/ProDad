@@ -22,15 +22,15 @@ jest.mock('framer-motion', () => {
   const React = require('react');
   return {
     motion: {
-      div: (props) => React.createElement('div', props, props.children),
-      section: (props) => React.createElement('section', props, props.children),
-      nav: (props) => React.createElement('nav', props, props.children),
-      header: (props) => React.createElement('header', props, props.children),
-      footer: (props) => React.createElement('footer', props, props.children),
-      p: (props) => React.createElement('p', props, props.children),
-      span: (props) => React.createElement('span', props, props.children),
+      div: (props: any) => React.createElement('div', props, props.children),
+      section: (props: any) => React.createElement('section', props, props.children),
+      nav: (props: any) => React.createElement('nav', props, props.children),
+      header: (props: any) => React.createElement('header', props, props.children),
+      footer: (props: any) => React.createElement('footer', props, props.children),
+      p: (props: any) => React.createElement('p', props, props.children),
+      span: (props: any) => React.createElement('span', props, props.children),
     },
-    AnimatePresence: (props) => React.createElement(React.Fragment, null, props.children),
+    AnimatePresence: (props: any) => React.createElement(React.Fragment, null, props.children),
   };
 });
 
