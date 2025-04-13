@@ -85,8 +85,44 @@ ProDad uses Husky to enforce code quality standards through Git hooks:
 
 - **Pre-commit Hook**: Automatically lints and formats staged files using ESLint and Prettier
 - **Pre-push Hook**: Runs linting checks before allowing code to be pushed
+- **Commit-msg Hook**: Enforces conventional commit message format
 
 These hooks help maintain consistent code quality and prevent issues from being committed or pushed to the repository.
+
+#### Commit Message Convention
+
+ProDad follows the [Conventional Commits](https://www.conventionalcommits.org/) specification for commit messages. This standardizes commit messages and makes the project history more readable and organized.
+
+Commit messages must follow this format:
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**Types:**
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `build`: Changes that affect the build system or external dependencies
+- `ci`: Changes to our CI configuration files and scripts
+- `chore`: Other changes that don't modify src or test files
+- `revert`: Reverts a previous commit
+- `wip`: Work in progress
+
+**Examples:**
+```
+feat: add dashboard widget
+fix: correct calendar event timezone display
+docs: update installation instructions
+chore: update dependencies
+```
 
 #### How it works
 
@@ -97,6 +133,10 @@ These hooks help maintain consistent code quality and prevent issues from being 
 
 2. When you push changes, the pre-push hook will:
    - Run linting on the entire codebase
+   
+3. When you create a commit message, the commit-msg hook will:
+   - Validate your commit message against the conventional commit format
+   - Reject commits that don't follow the convention
 
 #### Manual setup
 
